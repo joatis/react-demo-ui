@@ -18,8 +18,6 @@ class EditAccessForm extends React.Component {
     const { form, updateSelectedAccessRecord } = this.props;
     form.validateFields((errors, values) => {
       if (!errors){
-        console.log('here too?');
-        console.log(values);
         updateSelectedAccessRecord(values);
         form.resetFields(); // need to do this so that the form values change when you select another record
       }

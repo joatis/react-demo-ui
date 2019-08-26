@@ -24,10 +24,6 @@ class App extends React.Component {
     this.updateSelectedAccessRecord = this.updateSelectedAccessRecord.bind(this);
   }
 
-  componentDidMount() {
-
-  }
-
   updateSpotlight(evt) {
     this.setState({ spotLightFilter: evt.target.value });
   }
