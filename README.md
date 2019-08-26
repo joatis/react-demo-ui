@@ -5,6 +5,10 @@ A couple of caveats...
 3. I have 3 JSON files that I need to combine to construct Access Levels for the table, I decided to combine them in the presentation view 
 because it seems that that is what made the most sense at the time. If the scale was greater, though it may make more sense to combine the data in a higher state 
 so it doesn't have to get reconstructed with every update.
+4. Requirements state that changes in the form should me reflected in the table. I take this to be
+"take effect" only when the user hits the Save button, and not while they type.
+5. This took about 5 hours with distractions and interuptions on 8/25/2019
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
