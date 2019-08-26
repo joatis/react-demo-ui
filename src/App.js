@@ -17,10 +17,11 @@ class App extends React.Component {
       readers,
       readerTypes,
       spotLightFilter: '',
-      selectedAccessId: null
+      selectedAccessRecord: {}
     };
     this.updateSpotlight = this.updateSpotlight.bind(this);
-    this.setSelectedAccessId = this.setSelectedAccessId.bind(this);
+    this.setSelectedAccessRecord = this.setSelectedAccessRecord.bind(this);
+    this.updateSelectedAccessRecord = this.updateSelectedAccessRecord.bind(this);
   }
 
   componentDidMount() {
@@ -31,18 +32,29 @@ class App extends React.Component {
     this.setState({ spotLightFilter: evt.target.value });
   }
 
-  setSelectedAccessId(record) {
-    console.log(JSON.stringify(record));
-    this.setState({ selectedAccessId: record.id });
+  setSelectedAccessRecord(record) {
+    this.setState({ selectedAccessRecord: record });
+  }
+
+  updateSelectedAccessRecord(fields) {
+    const { selectedAccessRecord, accessLevels } = this.state;
+    const recordIndex = accessLevels.findIndex(e => (e.id === selectedAccessRecord.id));
+    accessLevels[recordIndex].name = fields.name; 
+    accessLevels[recordIndex].Description = fields.description; 
+    accessLevels[recordIndex].readerId = fields.readers; 
+    this.setState({ accessLevels });
   }
 
   render() {
     const { Header, Footer, Content } = Layout;
     const accessTableProps = {
       ...this.state,
-      setSelectedAccessId: this.setSelectedAccessId
+      setSelectedAccessRecord: this.setSelectedAccessRecord
     }
-    const { selectedAccessId } = this.state;
+    const accessFormProps = {
+      ...this.state,
+      updateSelectedAccessRecord: this.updateSelectedAccessRecord
+    }
     return (
       <Layout>
         <Header></Header>
@@ -53,11 +65,7 @@ class App extends React.Component {
               <AccessTableContainer { ...accessTableProps }></AccessTableContainer>
             </Col>
             <Col span={12}>
-              { (selectedAccessId !== null) ? (
-                <div>
-                  <WrappedEditAccessForm/>
-                </div>
-              ) : (null) }
+                <WrappedEditAccessForm { ...accessFormProps } />
             </Col>
           </Row>
         </Content>

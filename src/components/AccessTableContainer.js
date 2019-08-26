@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 export const AccessTableContainer = (props) => {
-  const { accessLevels, readers, readerTypes, spotLightFilter, setSelectedAccessId } = props; 
+  const { accessLevels, readers, readerTypes, spotLightFilter, setSelectedAccessRecord } = props; 
   // Get a union of the reader/readerType info 
   const readerObjects = readers.map(reader => {
     const rt = readerTypes.find(readerType => (readerType.id === reader.typeId));
@@ -45,7 +45,7 @@ export const AccessTableContainer = (props) => {
 
     return <Table  onRow={(record, rowIndex) => {
       return {
-        onClick: event => setSelectedAccessId(record), // click row
+        onClick: event => setSelectedAccessRecord(record), // click row
       };
     }} 
     dataSource={accessData} 
