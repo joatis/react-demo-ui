@@ -1,3 +1,11 @@
+A demo UI for Access levels in React.
+A couple of caveats...
+1. If this was more of a demo I would have added state management with Redux but hoisting up state is OK for this small project.
+2. Since the separate JSON files are local for simplicity, I just import them instead of fetching them from an endpoint when the app mounts.
+3. I have 3 JSON files that I need to combine to construct Access Levels for the table, I decided to combine them in the presentation view 
+because it seems that that is what made the most sense at the time. If the scale was greater, though it may make more sense to combine the data in a higher state 
+so it doesn't have to get reconstructed with every update.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
